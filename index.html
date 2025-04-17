@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome 🍓</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(to bottom right, #ffe0f0, #ffe8ec);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      animation: gradientAnimation 10s ease infinite; /* Smooth gradient background animation */
+    }
+
+    .strawberry {
+      font-size: 70px; /* Bigger strawberry for more impact */
+      margin-bottom: 30px; /* Space between strawberry and button */
+      animation: bounce 1.5s ease-in-out infinite; /* Bouncing effect for strawberry */
+    }
+
+    .start-btn {
+      background-color: #ffb6c1;
+      color: white;
+      border: none;
+      padding: 20px 50px;
+      font-size: 24px;
+      border-radius: 50px;
+      box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      transform: scale(0.95); /* Start smaller */
+      opacity: 0;
+      animation: fadeInButton 1s forwards 0.5s; /* Fade-in effect for button */
+    }
+
+    .start-btn:hover {
+      background-color: #ff69b4;
+      transform: scale(1.05); /* Slightly enlarge button on hover */
+    }
+
+    /* Bouncing animation for strawberry */
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    /* Gradient background animation */
+    @keyframes gradientAnimation {
+      0% {
+        background: linear-gradient(to bottom right, #ffe0f0, #ffe8ec);
+      }
+      50% {
+        background: linear-gradient(to bottom right, #ffccf5, #ffb3d9);
+      }
+      100% {
+        background: linear-gradient(to bottom right, #ffe0f0, #ffe8ec);
+      }
+    }
+
+    /* Fade-in animation for button */
+    @keyframes fadeInButton {
+      0% {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="strawberry">🍓</div> <!-- Strawberry placed above the button -->
+
+  <button class="start-btn" onclick="goToNext()">Start</button>
+
+  <script>
+    function goToNext() {
+      window.location.href = "first.html"; // This now goes to first.html
+    }
+  </script>
+
+</body>
+</html>
