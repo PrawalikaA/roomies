@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Message</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f7d1dc; /* Soft pink background */
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1s ease-in-out; /* Fade-in effect */
+        }
+
+        .heart {
+            font-size: 150px;
+            cursor: pointer;
+            color: #ff4d6d;
+            animation: bounce 1s infinite; /* Bouncing effect for heart */
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .heart:hover {
+            transform: scale(1.2); /* Slightly bigger on hover */
+            color: #ff69b4; /* Brighter pink */
+        }
+
+        .message {
+            display: none;
+            font-size: 30px;
+            color: #4b4b4b;
+            margin-top: 30px;
+            font-weight: 600;
+            animation: fadeInMessage 1s ease-in-out;
+        }
+
+        .music {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: none;
+        }
+
+        .strawberry {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.8;
+            pointer-events: none; /* Ensures strawberries don't interact with other elements */
+        }
+
+        /* Bouncing animation for heart */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Fade-in effect for container */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Fade-in effect for message */
+        @keyframes fadeInMessage {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .click-text {
+            font-size: 24px;
+            color: #ff4d6d;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <audio class="music" loop>
+        <source src="happy-mood-126767.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="container">
+        <div class="click-text">Click on me!</div>
+        <div class="heart" onclick="revealMessage()">🍓</div>
+        <div class="message">Hey Romies, you’re berry special to me! 🍓✨</div>
+    </div>
+
+    <script>
+        // Function to reveal the message and play music
+        function revealMessage() {
+            // Hide both the "Click on me!" text and the heart (big strawberry)
+            document.querySelector('.click-text').style.display = 'none';
+            document.querySelector('.heart').style.display = 'none';
+
+            // Show the message
+            document.querySelector('.message').style.display = 'block';
+
+            // Play music
+            document.querySelector('.music').play();
+        }
+
+        // Randomly position strawberries around the screen outside the container
+        function placeStrawberries() {
+            const bodyWidth = window.innerWidth;
+            const bodyHeight = window.innerHeight;
+            const numStrawberries = 30; // Increased number of strawberries
+            const container = document.querySelector('.container');
+            const containerRect = container.getBoundingClientRect();
+            
+            for (let i = 0; i < numStrawberries; i++) {
+                const strawberry = document.createElement('div');
+                strawberry.classList.add('strawberry');
+                strawberry.textContent = '🍓';
+
+                // Randomly position strawberry outside the container with equal spacing
+                const x = Math.random() * bodyWidth;
+                const y = Math.random() * bodyHeight;
+
+                // Ensure strawberries are outside the container's box
+                if (x < containerRect.left || x > containerRect.right || y < containerRect.top || y > containerRect.bottom) {
+                    strawberry.style.left = `${x}px`;
+                    strawberry.style.top = `${y}px`;
+
+                    // Append to body
+                    document.body.appendChild(strawberry);
+                }
+            }
+        }
+
+        // Place strawberries when page loads
+        window.onload = placeStrawberries;
+    </script>
+
+</body>
+</html>
